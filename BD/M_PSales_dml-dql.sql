@@ -43,4 +43,20 @@ DELETE FROM Cursos
 	WHERE IdCurso = 6;
 
 INSERT INTO Disciplinas (Nome, IdCurso)
-	VALUES ('HTML',1);
+	VALUES ('Cabeamento estruturado',3);
+
+SELECT D.*, C.*
+	FROM Disciplinas D
+	INNER JOIN Cursos C
+	ON D.IdCurso = C.IdCurso
+
+SELECT C.*,D.* 
+	FROM Cursos C
+	LEFT JOIN Disciplinas D
+	ON C.IdCurso = D.IdCurso
+
+DELETE FROM Disciplinas
+	WHERE IdDisciplina = 8
+
+INSERT INTO Disciplinas (Nome)
+	VALUES ('Matemática');

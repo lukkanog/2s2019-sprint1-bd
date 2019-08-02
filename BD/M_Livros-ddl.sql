@@ -1,0 +1,37 @@
+CREATE DATABASE M_Livros;
+USE M_Livros;
+
+CREATE TABLE Generos(
+	IdGenero INT PRIMARY KEY IDENTITY
+	,Nome VARCHAR(130) NOT NULL
+);
+
+CREATE TABLE Autores(
+	IdAutor INT PRIMARY KEY IDENTITY
+	,Nome VARCHAR(150) NOT NULL 
+);
+
+CREATE TABLE Livros(
+	IdLivro INT PRIMARY KEY IDENTITY
+	,IdGenero INT FOREIGN KEY REFERENCES Generos(IdGenero)
+	,IdAutor INT FOREIGN KEY REFERENCES Autores(IdAutor)
+	,Titulo VARCHAR(150) NOT NULL
+);
+
+/* ========================= DESAFIOS EXTRAS ================================ */
+
+ALTER TABLE Livros
+	ADD Sinopse VARCHAR(600) NULL
+
+ALTER TABLE Livros 
+	ADD DataLancamento Date NULL
+
+CREATE TABLE Vinculo(
+	 IdVinculo INT PRIMARY KEY IDENTITY
+	,Descricao VARCHAR(30) UNIQUE
+);
+
+ALTER TABLE Livros
+	ADD IdVinculo INT FOREIGN KEY REFERENCES Vinculo(IdVinculo)
+	
+
