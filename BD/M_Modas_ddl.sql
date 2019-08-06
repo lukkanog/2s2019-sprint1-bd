@@ -1,0 +1,53 @@
+CREATE DATABASE M_Modas;
+USE M_Modas;
+
+CREATE TABLE Marcas(
+	IdMarca INT PRIMARY KEY IDENTITY
+	,Nome	VARCHAR(150) NOT NULL
+);
+
+CREATE TABLE Tamanhos(
+	IdTamanho	INT PRIMARY KEY IDENTITY
+	,Tamanho	VARCHAR(15) UNIQUE NOT NULL
+);
+
+CREATE TABLE Cores(
+	IdCor INT PRIMARY KEY IDENTITY
+	,Nome VARCHAR(40) NOT NULL
+);
+
+CREATE TABLE Camisetas(
+	IdCamiseta	INT PRIMARY KEY IDENTITY
+	,Modelo		VARCHAR(100) NOT NULL UNIQUE
+	,IdMarca	INT FOREIGN KEY REFERENCES Marcas(IdMarca)
+);
+
+CREATE TABLE CamisetasCores(
+	IdCamiseta INT FOREIGN KEY REFERENCES Camisetas(IdCamiseta)
+	,IdCor INT FOREIGN KEY REFERENCES Cores(IdCor)
+);
+
+CREATE TABLE CamisetasTamanhos(
+	IdCamiseta INT FOREIGN KEY REFERENCES Camisetas(IdCamiseta)
+	,IdTamanho INT FOREIGN KEY REFERENCES Tamanhos(IdTamanho)
+);
+
+
+		/* ===================  E X T R A S ============== */
+
+ALTER TABLE Marcas
+	ADD QuantidadeLoja INT;
+	
+ALTER TABLE Marcas
+	ADD DataCriacao DATE;
+
+ALTER TABLE Tamanhos
+	ADD Medida VARCHAR(50);
+
+CREATE TABLE Lavagens(
+	IdLavagem TINYINT PRIMARY KEY IDENTITY
+	,Lavagem VARCHAR(100) NOT NULL
+);
+
+ALTER TABLE Camisetas
+	ADD IdLavagem TINYINT FOREIGN KEY REFERENCES Lavagens(IdLavagem);
