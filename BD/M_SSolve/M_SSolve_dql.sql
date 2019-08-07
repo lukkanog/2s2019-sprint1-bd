@@ -18,9 +18,9 @@ SELECT S.*,F.*
 	INNER JOIN Funcionarios F
 	ON FS.IdFuncionario = F.IdFuncionario;
 
-/**/
 
-SELECT S.*,C.RazaoSocial,F.IdFuncionario,F.Nome
+/* select mais brabo*/
+SELECT S.*,C.NomeFantasia,C.Endereco,F.IdFuncionario,F.Nome
 	FROM Servicos S
 	INNER JOIN Clientes C
 	ON S.IdCliente = C.IdCliente
