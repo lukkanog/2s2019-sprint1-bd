@@ -1,0 +1,54 @@
+CREATE DATABASE M_Opflix;
+
+USE M_Opflix;
+
+CREATE TABLE Categorias(
+	IdCategoria INT PRIMARY KEY IDENTITY
+	,Nome VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE TiposLancamentos(
+	IdTipoLancamento INT PRIMARY KEY IDENTITY
+	,Nome VARCHAR(255) NOT NULL UNIQUE
+);
+
+
+CREATE TABLE TiposUsuarios(
+	IdTipoUsuario INT PRIMARY KEY IDENTITY
+	,Nome VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE Plataformas(
+	IdPlataforma INT PRIMARY KEY IDENTITY
+	,Nome VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE Usuarios(
+	IdUsuario INT PRIMARY KEY IDENTITY
+	,IdTipoUsuario INT FOREIGN KEY REFERENCES TiposUsuarios(IdTipoUsuario) NOT NULL
+	,Nome VARCHAR(255) NOT NULL
+	,Email VARCHAR(255) NOT NULL UNIQUE
+	,Senha VARCHAR(50) NOT NULL
+	,DataCadastro DATETIME
+);
+
+CREATE TABLE Lancamentos(
+	IdLancamento INT PRIMARY KEY IDENTITY
+	,IdCategoria INT FOREIGN KEY REFERENCES Categorias(IdCategoria) NOT NULL
+	,IdTipoLancamento INT FOREIGN KEY REFERENCES TiposLancamentos(IdTipoLancamento) NOT NULL
+	,Titulo VARCHAR(255) NOT NULL
+	,Sinopse TEXT
+	,Duracao INT NOT NULL
+);
+
+CREATE TABLE LancamentosFavoritos(
+	IdUsuario INT FOREIGN KEY REFERENCES Usuarios(IdUsuario) NOT NULL
+	,IdLancamento INT FOREIGN KEY REFERENCES Lancamentos(IdLancamento) NOT NULL
+);
+
+CREATE TABLE Disponibilidades(
+	IdDisponibilidade INT PRIMARY KEY IDENTITY
+	,IdLancamento INT FOREIGN KEY REFERENCES Lancamentos(IdLancamento) NOT NULL
+	,IdPlataforma INT FOREIGN KEY REFERENCES Plataformas(IdPlataforma) NOT NULL
+	,DataLancamento DATETIME NOT NULL
+);

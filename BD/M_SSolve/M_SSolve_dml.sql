@@ -19,4 +19,11 @@ INSERT INTO Servicos (Descricao,Comodo,DataInicio,DataTermino,Valor,IdCliente)
 INSERT INTO FuncionariosServicos (IdServico,IdFuncionario)
 	VALUES (4,1);
 
-SELECT * FROM FuncionariosServicos; 
+SELECT * FROM FuncionariosServicos;
+
+UPDATE Servicos
+	SET DataTermino = '2019-09-20T11:30:00'
+	WHERE IdServico = 4
+
+INSERT INTO Funcionarios (Nome,Salario)
+	VALUES ('Toninho',2);

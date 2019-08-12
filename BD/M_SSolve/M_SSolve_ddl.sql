@@ -30,3 +30,9 @@ CREATE TABLE FuncionariosServicos(
 	IdServico INT FOREIGN KEY REFERENCES Servicos(IdServico)
 	,IdFuncionario INT FOREIGN KEY REFERENCES Funcionarios(IdFuncionario)
 );
+
+ALTER TABLE Servicos
+	DROP COLUMN DataTermino
+
+ALTER TABLE Servicos
+	ADD DataTermino DATETIME
