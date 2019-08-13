@@ -27,7 +27,7 @@ CREATE TABLE Usuarios(
 	IdUsuario INT PRIMARY KEY IDENTITY
 	,IdTipoUsuario INT FOREIGN KEY REFERENCES TiposUsuarios(IdTipoUsuario) NOT NULL
 	,Nome VARCHAR(255) NOT NULL
-	,Email VARCHAR(255) NOT NULL UNIQUE
+	,Email VARCHAR(255) UNIQUE NOT NULL 
 	,Senha VARCHAR(50) NOT NULL
 	,DataCadastro DATETIME
 );
@@ -46,9 +46,18 @@ CREATE TABLE LancamentosFavoritos(
 	,IdLancamento INT FOREIGN KEY REFERENCES Lancamentos(IdLancamento) NOT NULL
 );
 
-CREATE TABLE Disponibilidades(
-	IdDisponibilidade INT PRIMARY KEY IDENTITY
-	,IdLancamento INT FOREIGN KEY REFERENCES Lancamentos(IdLancamento) NOT NULL
-	,IdPlataforma INT FOREIGN KEY REFERENCES Plataformas(IdPlataforma) NOT NULL
-	,DataLancamento DATETIME NOT NULL
-);
+ALTER TABLE Lancamentos
+	ADD IdPlataforma INT FOREIGN KEY REFERENCES Plataformas(IdPlataforma);
+
+ALTER TABLE Usuarios
+	ADD DataNascimento DATE
+
+ALTER TABLE Lancamentos
+	ADD  DataLancamento DATE NOT NULL
+
+ALTER TABLE Lancamentos
+	ADD Duracao INT
+
+
+
+
